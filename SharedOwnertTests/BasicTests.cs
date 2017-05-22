@@ -45,5 +45,33 @@ namespace SharedOwnertTests
             var ob = sharedTimer.GetHandle();
         }
 
+        class TestClass : IDisposable
+        {
+            internal bool IsDisposed = false;
+            public void Dispose()
+            {
+                this.IsDisposed = true;
+            }
+        }
+
+        [TestMethod]
+        public void ReleaseResourceTest()
+        {
+            var tstClass = new TestClass();
+            Action act = () =>
+            {
+                var sharedOwner = new SharedOwner.SharedHandle<TestClass>(tstClass);
+                using (var handle = sharedOwner.GetHandle())
+                {
+                    Assert.AreEqual(sharedOwner.ReferenceCount, 2);
+                }
+                Assert.AreEqual(sharedOwner.ReferenceCount, 1);
+                sharedOwner = null;
+            };
+            act();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            Assert.IsTrue(tstClass.IsDisposed);
+        }
     }
 }

@@ -59,7 +59,6 @@ namespace SharedOwner
         ~SharedHandle()
         {
             m_object.Dispose();
-            GC.SuppressFinalize(this);
         }
     }
 }
