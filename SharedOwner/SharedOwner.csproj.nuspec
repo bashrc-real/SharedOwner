@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SharedOwner</id>
+    <version>$version$</version>
+    <authors>bashrc-real</authors>
+    <owners>bashrc-real</owners>
+    <licenseUrl>https://github.com/bashrc-real/SharedOwner/blob/master/licence</licenseUrl>
+    <projectUrl>https://github.com/bashrc-real/SharedOwner/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+A library for managing shared resources in C# almost equivalent to shared_ptr
+Despite having the luxury of garbage collector, items that derive from IDisposable needs to be almost treated like a native resource. The owner must take the responsibility of calling Dispose once all the consumers of the resource are no longer using the api. But for some shared reosources their is no implicit owner and hence it becomes difficult to clean up resources in a deterministic manner. This library provides ref counted handle objects managed by a owner class which has the responsibility of calling Dispose once the ref count of the underlying object becomes 0.
+reddit page for the nuget here: https://www.reddit.com/r/csharp/comments/6ct0jv/sharedownership_in_c_equivalent_of_stdshared_ptr
+</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>c-sharp-library reference-counting reference-manager</tags>
+  </metadata>
+</package>
